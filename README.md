@@ -32,4 +32,7 @@ For text line recognition, we employ the attention-based encoder-decoder on our 
 - The recognized text transcription is in ./data/result.xml and the result images are in ./data/result/   
 - If you may have to check the path to Japanese font in test.py for correct visualization results.   
     `fontPIL = '/usr/share/fonts/truetype/fonts-japanese-gothic.ttf' # japanese font`   
+    
+ - An example result from our OCR system
+![alt text]( https://github.com/ducanh841988/Kindai-OCR/blob/master/data/result/res_k188701_021_39.jpg "OCR result")
 
