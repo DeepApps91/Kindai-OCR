@@ -34,5 +34,5 @@ For text line recognition, we employ the attention-based encoder-decoder on our 
     `fontPIL = '/usr/share/fonts/truetype/fonts-japanese-gothic.ttf' # japanese font`   
     
  - An example result from our OCR system
-![alt text]( https://github.com/ducanh841988/Kindai-OCR/blob/master/data/result/res_k188701_021_39.jpg "OCR result")
+ <img src="https://github.com/ducanh841988/Kindai-OCR/blob/master/data/result/res_k188701_021_39.jpg" width="700">
 
