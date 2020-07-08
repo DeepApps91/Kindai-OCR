@@ -24,7 +24,8 @@ For text line recognition, we employ the attention-based encoder-decoder on our 
 
 
 ## Running Kindai OCR
-- You should first download the pre_trained models and put them into ./pretrain/ folder.   
+- You should first download the pre_trained models and put them into ./pretrain/ folder. 
+[VGG model](https://drive.google.com/file/d/1_A1dEFKxyiz4Eu1HOCDbjt1OPoEh90qr/view?usp=sharing), [CRAFT model](https://drive.google.com/file/d/1-9xt_jjs4btMrz5wzrU1-kyp2c6etFab/view?usp=sharing), [OCR model](https://drive.google.com/file/d/1mibg7D2D5rvPhhenLeXNilSLMBloiexl/view?usp=sharing) 
 - Copy your images into ./data/test/ folder   
 - run the following script to recognize images:   
 `python test.py`   
