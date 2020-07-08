@@ -26,6 +26,6 @@ For text line recognition, we employ the attention-based encoder-decoder on our 
 - run the following script to recognize images:   
 `python test.py`   
 - The recognized text transcription is in ./data/result.xml and the result images are in ./data/result/   
-- If you may have to check the path to Japanese font for correct visualization results.   
+- If you may have to check the path to Japanese font in test.py for correct visualization results.   
     `fontPIL = '/usr/share/fonts/truetype/fonts-japanese-gothic.ttf' # japanese font`   
 
