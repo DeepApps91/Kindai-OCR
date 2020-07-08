@@ -5,12 +5,6 @@ import sys
 import pickle as pkl
 import torch
 from torch import nn
-from Augmentor.Operations import Distort, Skew, RandomBrightness
-from PIL import Image
-
-d = Distort(probability=0.2, grid_height=15, grid_width=15, magnitude=10)
-sk = Skew(probability=1.0, skew_type='TILT_LEFT_RIGHT', magnitude=0.15)
-br = RandomBrightness(probability = 1.0, min_factor = 0.9, max_factor = 1.1)
 
 # load data
 def dataIterator(feature_file, label_file, dictionary, batch_size, batch_Imagesize, maxlen, maxImagesize):
