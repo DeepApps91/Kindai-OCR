@@ -187,6 +187,7 @@ def test(text_detection_modelpara, ocr_modelpara, dictionary_target):
     params['bottleneck'] = True
     params['use_dropout'] = True
     params['input_channels'] = 3
+    params['cuda'] = args.cuda
 
     # load model
     OCR = Encoder_Decoder(params)
@@ -194,9 +195,8 @@ def test(text_detection_modelpara, ocr_modelpara, dictionary_target):
         OCR.load_state_dict(copyStateDict(torch.load(ocr_modelpara)))
     else:
         OCR.load_state_dict(copyStateDict(torch.load(ocr_modelpara, map_location='cpu')))
-
     if args.cuda:
-        OCR = OCR.cuda()
+        #OCR = OCR.cuda()
         OCR = torch.nn.DataParallel(OCR)
         cudnn.benchmark = False
 
@@ -288,9 +288,11 @@ def test(text_detection_modelpara, ocr_modelpara, dictionary_target):
             mat[0,:,:] = 0.299* input_img[:, :, 0] + 0.587 * input_img[:, :, 1] + 0.114 * input_img[:, :, 2]
 
             xx_pad = mat.astype(np.float32) / 255.
-            xx_pad = torch.from_numpy(xx_pad[None, :, :, :]).cuda()  # (1,1,H,W)
+            xx_pad = torch.from_numpy(xx_pad[None, :, :, :])  # (1,1,H,W)
+            if args.cuda:
+                xx_pad.cuda()
             with torch.no_grad():
-                sample, score, alpha_past_list = gen_sample(OCR, xx_pad, params, True, k=10, maxlen=600)
+                sample, score, alpha_past_list = gen_sample(OCR, xx_pad, params, args.cuda, k=10, maxlen=600)
             score = score / np.array([len(s) for s in sample])
             ss = sample[score.argmin()]
             alpha_past = alpha_past_list[score.argmin()]
@@ -327,7 +329,7 @@ def test(text_detection_modelpara, ocr_modelpara, dictionary_target):
             image = cv2_putText_1(img = image, text = result, org = (min_x, max_x, min_y, max_y), fontFace = fontPIL, fontScale = size, color = colorBGR)
 
 
-            
+        print('save image')    
         # save score text
         filename, file_ext = os.path.splitext(os.path.basename(image_path))
         mask_file = result_folder + "/res_" + filename + '_mask.jpg'

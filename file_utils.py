@@ -41,7 +41,7 @@ def saveResult(img_file, img, boxes, dirname='./result/', verticals=None, texts=
             None
         """
         img = np.array(img)
-        print (np.shape(img))
+        #print (np.shape(img))
         result = np.zeros((np.shape(img)[0], np.shape(img)[1]))
         # make result file list
         filename, file_ext = os.path.splitext(os.path.basename(img_file))

@@ -6,6 +6,7 @@ import torch.nn as nn
 class Gru_cond_layer(nn.Module):
     def __init__(self, params):
         super(Gru_cond_layer, self).__init__()
+        self.cuda = params['cuda']
         # attention
         self.conv_Ua = nn.Conv2d(params['D'], params['dim_attention'], kernel_size=1)
         self.fc_Wa = nn.Linear(params['n'], params['dim_attention'], bias=False)
@@ -44,16 +45,24 @@ class Gru_cond_layer(nn.Module):
 
         if one_step:
             if mask is None:
-                mask = torch.ones(embedding.shape[0]).cuda()
+                mask = torch.ones(embedding.shape[0])
+                if self.cuda:
+                    mask.cuda()
             h2ts, cts, alphas, alpha_pasts = self._step_slice(mask, state_below_r, state_below_z, state_below_h,
                                                               init_state, context, context_mask, alpha_past, Ua_ctx)
         else:
-            alpha_past = torch.zeros(n_samples, context.shape[2], context.shape[3]).cuda()
+            alpha_past = torch.zeros(n_samples, context.shape[2], context.shape[3])
             h2t = init_state
-            h2ts = torch.zeros(n_steps, n_samples, params['n']).cuda()
-            cts = torch.zeros(n_steps, n_samples, params['D']).cuda()
-            alphas = (torch.zeros(n_steps, n_samples, context.shape[2], context.shape[3])).cuda()
-            alpha_pasts = torch.zeros(n_steps, n_samples, context.shape[2], context.shape[3]).cuda()
+            h2ts = torch.zeros(n_steps, n_samples, params['n'])
+            cts = torch.zeros(n_steps, n_samples, params['D'])
+            alphas = (torch.zeros(n_steps, n_samples, context.shape[2], context.shape[3]))
+            alpha_pasts = torch.zeros(n_steps, n_samples, context.shape[2], context.shape[3])
+            if self.cuda:
+                alpha_past.cuda()
+                h2ts.cuda()
+                cts.cuda()
+                alphas.cuda()
+                alpha_pasts.cuda()
             for i in range(n_steps):
                 h2t, ct, alpha, alpha_past = self._step_slice(mask[i], state_below_r[i], state_below_z[i],
                                                               state_below_h[i], h2t, context, context_mask, alpha_past,

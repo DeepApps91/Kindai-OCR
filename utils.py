@@ -114,23 +114,7 @@ def load_mapping(dictFile):
     
 # create batch
 def prepare_data(options, images_x, seqs_y, prev_x = None):
-    '''if prev_x!= None and len(images_x) == len(prev_x) and np.random.random_sample() > 0.7:
-        for i in range(len(images_x)):
-            #print(np.shape(images_x[i]))
-            images_x[i] = images_x[i]*0.7 + prev_x[i] * 0.3'''
-            
-    '''if np.random.random_sample() > 0.7:
-        for i in range(len(images_x)):
-            #print(np.shape(images_x[i][0]))
-            if np.shape(images_x[i][0])[0] <= 100 or  np.shape(images_x[i][0])[1] <= 100: continue
-            img = Image.fromarray(images_x[i][0])
-            img = sk.perform_operation([img])
-            img = br.perform_operation([img[0]])
-            #img[0].save(str(i) + '.jpg')
-            img = np.asarray(img[0])
-            images_x[i][0] = img
-            #print(np.shape(images_x[i][0]))'''
-
+    
     heights_x = [s.shape[1] for s in images_x]
     widths_x = [s.shape[2] for s in images_x]
     lengths_y = [len(s) for s in seqs_y]
@@ -167,14 +151,23 @@ def gen_sample(model, x, params, gpu_flag, k=1, maxlen=30):
     else:
         next_state, ctx0 = model.f_init(x)
     next_w = -1 * np.ones((1,)).astype(np.int64)
-    next_w = torch.from_numpy(next_w).cuda()
-    next_alpha_past = torch.zeros(1, ctx0.shape[2], ctx0.shape[3]).cuda()
+    next_w = torch.from_numpy(next_w)
+    next_alpha_past = torch.zeros(1, ctx0.shape[2], ctx0.shape[3])
     ctx0 = ctx0.cpu().numpy()
+
+    if gpu_flag:
+        next_w.cuda()
+        next_alpha_past.cuda()
 
     for ii in range(maxlen):
         ctx = np.tile(ctx0, [live_k, 1, 1, 1])
-        ctx = torch.from_numpy(ctx).cuda()
+        ctx = torch.from_numpy(ctx)
         if gpu_flag:
+            ctx.cuda()
+            next_w.cuda()
+            next_state.cuda()
+            next_alpha_past.cuda()
+
             next_p, next_state, next_alpha_past, alpha = model.module.f_next(params, next_w, None, ctx, None, next_state,
                                                                       next_alpha_past, True)
         else:
@@ -235,9 +228,9 @@ def gen_sample(model, x, params, gpu_flag, k=1, maxlen=30):
         #next_alpha_past = np.array(hyp_alpha_past)
         next_alpha_past = np.array([w[-1] for w in hyp_alpha_past])
         #print (np.shape(next_alpha_past))
-        next_w = torch.from_numpy(next_w).cuda()
-        next_state = torch.from_numpy(next_state).cuda()
-        next_alpha_past = torch.from_numpy(next_alpha_past).cuda()
+        next_w = torch.from_numpy(next_w)
+        next_state = torch.from_numpy(next_state)
+        next_alpha_past = torch.from_numpy(next_alpha_past)
     return sample, sample_score, sample_alpha
 
 

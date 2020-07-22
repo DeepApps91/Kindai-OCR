@@ -21,14 +21,19 @@ class My_Embedding(nn.Module):
     def __init__(self, params):
         super(My_Embedding, self).__init__()
         self.embedding = nn.Embedding(params['K'], params['m'])
+        self.cuda = params['cuda']
 
     def forward(self, params, y):
         if y.sum() < 0.: 
-            emb = torch.zeros(1, params['m']).cuda()
+            emb = torch.zeros(1, params['m'])
+            if self.cuda:
+                emb.cuda()
         else:
             emb = self.embedding(y)
             if len(emb.shape) == 3:  # only for training stage
-                emb_shifted = torch.zeros([emb.shape[0], emb.shape[1], params['m']], dtype=torch.float32).cuda()
+                emb_shifted = torch.zeros([emb.shape[0], emb.shape[1], params['m']], dtype=torch.float32)
+                if self.cuda:
+                    emb_shifted.cuda()
                 emb_shifted[1:] = emb[:-1]
                 emb = emb_shifted
         return emb
@@ -43,6 +48,7 @@ class Encoder_Decoder(nn.Module):
         self.emb_model = My_Embedding(params)
         self.gru_model = Gru_cond_layer(params)
         self.gru_prob_model = Gru_prob(params)
+        self.cuda = params['cuda']
 
     def forward(self, params, x, x_mask, y, y_mask, one_step=False):
         # recover permute
