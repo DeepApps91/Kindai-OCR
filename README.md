@@ -43,4 +43,13 @@ pillow==4.3.0
 - using --canvas_size ot set image size for text line detection   
  - An example result from our OCR system
  <img src="https://github.com/ducanh841988/Kindai-OCR/blob/master/data/result/res_k188701_021_39.jpg" width="700">
+ 
+ ## Running Kindai OCR
+ If you find Kindai OCR useful in your research, please consider citing:   
+ Anh Duc Le, Daichi Mochihashi, Katsuya Masuda, Hideki Mima, and Nam Tuan Ly. 2019. Recognition of Japanese historical text lines by an attention-based encoder-decoder and text line generation. In Proceedings of the 5th International Workshop on Historical Document Imaging and Processing (HIP ’19). Association for Computing Machinery, New York, NY, USA, 37–41. DOI:https://doi.org/10.1145/3352631.3352641   
+ 
+ 
+ ## Acknowledgement
+
+
 
