@@ -20,13 +20,14 @@ For text line recognition, we employ the attention-based encoder-decoder on our 
 
 
 ## Installing Kindai OCR
-python==3.7.4
-torch==1.4.0
-torchvision==0.2.1
-opencv-python==3.4.2.17
-scikit-image==0.14.2
-scipy==1.1.0
-Polygon3
+python==3.7.4   
+torch==1.4.0   
+torchvision==0.2.1   
+opencv-python==3.4.2.17   
+scikit-image==0.14.2   
+scipy==1.1.0   
+Polygon3   
+pillow==4.3.0   
 
 
 ## Running Kindai OCR
@@ -38,7 +39,8 @@ Polygon3
 - The recognized text transcription is in ./data/result.xml and the result images are in ./data/result/   
 - If you may have to check the path to Japanese font in test.py for correct visualization results.   
     `fontPIL = '/usr/share/fonts/truetype/fonts-japanese-gothic.ttf' # japanese font`   
-    
+- using --cuda = True for GPU device and Fasle for CPU device    
+- using --canvas_size ot set image size for text line detection   
  - An example result from our OCR system
  <img src="https://github.com/ducanh841988/Kindai-OCR/blob/master/data/result/res_k188701_021_39.jpg" width="700">
 
