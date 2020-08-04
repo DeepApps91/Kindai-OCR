@@ -51,5 +51,9 @@ pillow==4.3.0
  
  ## Acknowledgement
 
+We thank to Center for Research and Development of Higher Education and National Institute for Japanese Language and Linguistics for providing the kindai datasets.     
+
+## Contact
+Dr. Anh Duc Le, email: leducanh841988@gmail.com or anh@ism.ac.jp    
 
 
