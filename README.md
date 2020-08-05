@@ -12,7 +12,7 @@ The system has 2 main modules: text line extraction and text line recognition. T
 For text line extraction, we retrain the CRAFT (Character Region Awareness for Text Detection) on 1000 annotated images provided by Center for Research and Development of Higher Education, The University of Tokyo.
 ![alt text](https://github.com/ducanh841988/Kindai-OCR/blob/master/images/TextlineRecognition.jpg "text line recognition")
 
-For text line recognition, we employ the attention-based encoder-decoder on our previous publication. We train the text line recognition on 1000 annotated images and 1600 unannotated images provided by Center for Research and Development of Higher Education and National Institute for Japanese Language and Linguistics, respectively.
+For text line recognition, we employ the attention-based encoder-decoder on our previous publication. We train the text line recognition on 1000 annotated images and 1600 unannotated images provided by Center for Research and Development of Higher Education, The University of Tokyo and National Institute for Japanese Language and Linguistics, respectively.
 
 
 
@@ -51,7 +51,7 @@ pillow==4.3.0
  
  ## Acknowledgement
 
-We thank to Center for Research and Development of Higher Education and National Institute for Japanese Language and Linguistics for providing the kindai datasets.     
+We thank to Center for Research and Development of Higher Education, The University of Tokyo and National Institute for Japanese Language and Linguistics for providing the kindai datasets.     
 
 ## Contact
 Dr. Anh Duc Le, email: leducanh841988@gmail.com or anh@ism.ac.jp    
