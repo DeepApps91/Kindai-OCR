@@ -49,9 +49,9 @@ pillow==4.3.0
  Anh Duc Le, Daichi Mochihashi, Katsuya Masuda, Hideki Mima, and Nam Tuan Ly. 2019. Recognition of Japanese historical text lines by an attention-based encoder-decoder and text line generation. In Proceedings of the 5th International Workshop on Historical Document Imaging and Processing (HIP ’19). Association for Computing Machinery, New York, NY, USA, 37–41. DOI:https://doi.org/10.1145/3352631.3352641   
  
  
- ## Acknowledgement
+ ## Acknowledgment
 
-We thank to Center for Research and Development of Higher Education, The University of Tokyo and National Institute for Japanese Language and Linguistics for providing the kindai datasets.     
+We thank The Center for Research and Development of Higher Education, The University of Tokyo, and National Institute for Japanese Language and Linguistics for providing the kindai datasets.     
 
 ## Contact
 Dr. Anh Duc Le, email: leducanh841988@gmail.com or anh@ism.ac.jp    
