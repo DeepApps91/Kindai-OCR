@@ -1,3 +1,6 @@
+
+
+
 # Kindai-OCR
 OCR system for recognizing modern Japanese magazines
 
@@ -12,30 +15,33 @@ The system has 2 main modules: text line extraction and text line recognition. T
 For text line extraction, we retrain the CRAFT (Character Region Awareness for Text Detection) on 1000 annotated images provided by Center for Research and Development of Higher Education, The University of Tokyo.
 ![alt text](https://github.com/ducanh841988/Kindai-OCR/blob/master/images/TextlineRecognition.jpg "text line recognition")
 
-For text line recognition, we employ the attention-based encoder-decoder on our previous publication. We train the text line recognition on 1000 annotated images and 1600 unannotated images provided by Center for Research and Development of Higher Education, The University of Tokyo and National Institute for Japanese Language and Linguistics, respectively.
-
-
-
-
-
+Text line recognition, 
+For Kindai V1.0, we employ the attention-based encoder-decoder on our previous publication. We train the text line recognition on 1000 annotated images and 1600 unannotated images provided by Center for Research and Development of Higher Education, The University of Tokyo and National Institute for Japanese Language and Linguistics, respectively.
+For Kindai V2.0, we trained a transformer with more data from National Diet Library and The Center for Open Data in The Humanities.
 
 ## Installing Kindai OCR
-python==3.7.4   
-torch==1.4.0   
-torchvision==0.2.1   
-opencv-python==3.4.2.17   
-scikit-image==0.14.2   
-scipy==1.1.0   
-Polygon3   
-pillow==4.3.0   
+
+Python==3.7.11
+torch==1.7.0
+torchvision==0.8.1
+opencv-python==3.4.2.17
+scikit-image==0.14.2
+scipy==1.1.0
+Polygon3
+pillow==4.3.0
+pytorch-lightning==1.3.5
+einops==0.3.0
+editdistance==0.5.3 
 
 
 ## Running Kindai OCR
 - You should first download the pre_trained models and put them into ./pretrain/ folder. 
-[VGG model](https://drive.google.com/file/d/1_A1dEFKxyiz4Eu1HOCDbjt1OPoEh90qr/view?usp=sharing), [CRAFT model](https://drive.google.com/file/d/1-9xt_jjs4btMrz5wzrU1-kyp2c6etFab/view?usp=sharing), [OCR model](https://drive.google.com/file/d/1mibg7D2D5rvPhhenLeXNilSLMBloiexl/view?usp=sharing) 
+[VGG model](https://drive.google.com/file/d/1_A1dEFKxyiz4Eu1HOCDbjt1OPoEh90qr/view?usp=sharing), [CRAFT model](https://drive.google.com/file/d/1-9xt_jjs4btMrz5wzrU1-kyp2c6etFab/view?usp=sharing), [OCR V1.0 model](https://drive.google.com/file/d/1mibg7D2D5rvPhhenLeXNilSLMBloiexl/view?usp=sharing) 
+[OCR V2.0 model] ()
 - Copy your images into ./data/test/ folder   
 - run the following script to recognize images:   
-`python test.py`   
+`python test_kindai_1.0.py`   
+`python test_kindai_2.0.py`   
 - The recognized text transcription is in ./data/result.xml and the result images are in ./data/result/   
 - If you may have to check the path to Japanese font in test.py for correct visualization results.   
     `fontPIL = '/usr/share/fonts/truetype/fonts-japanese-gothic.ttf' # japanese font`   
