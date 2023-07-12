@@ -12,24 +12,28 @@ Kindai V2.0 employed Transformer OCR for text recognition. Transformer OCR was t
 This repo contains an OCR system for converting modern Japanese images to text. The software has been developed by Dr. Anh Duc Le, while he was working for <a href="http://codh.rois.ac.jp/">ROIS-DS Center for Open Data in the Humanities</a>.
 
 The system has 2 main modules: text line extraction and text line recognition. The overall architecture is shown in the below figures.
-![alt text](https://github.com/ducanh841988/Kindai-OCR/blob/master/images/TextlineExtraction.jpg "text line extraction")
 
-For text line extraction, we retrain the CRAFT (Character Region Awareness for Text Detection) on 1000 annotated images provided by Center for Research and Development of Higher Education, The University of Tokyo.
-![alt text](https://github.com/ducanh841988/Kindai-OCR/blob/master/images/kindai_v1.jpg "text line recognition with attention model")
-Text line recognition with attention model in Kindai V1.0
+### Text line extraction
+We retrain the CRAFT (Character Region Awareness for Text Detection) on 1000 annotated images provided by Center for Research and Development of Higher Education, The University of Tokyo.
 
-![alt text](https://github.com/ducanh841988/Kindai-OCR/blob/master/images/kindai_v2.png "text line recognition with ")
-Text line recognition with Transformer in Kindai V2.0
-Text line recognition,
-For Kindai V1.0, we employ the attention-based encoder-decoder on our previous publication. We train the text line recognition on 1000 annotated images and 1600 unannotated images provided by Center for Research and Development of Higher Education, The University of Tokyo and National Institute for Japanese Language and Linguistics, respectively.    
+<img src="./images/TextlineExtraction.jpg" height="200" />
+
+### Text line recognition
+For Kindai V1.0, we employ the attention-based encoder-decoder on our previous publication. We train the text line recognition on 1000 annotated images and 1600 unannotated images provided by Center for Research and Development of Higher Education, The University of Tokyo and National Institute for Japanese Language and Linguistics, respectively.     
+    
+<img src="./images/kindai_v1.jpg" height="200" />
+
 For Kindai V2.0, we trained a transformer with more data from National Diet Library (NDL) and The Center for Open Data in The Humanities (CODH).
-[NDL dataset](https://github.com/ndl-lab/pdmocrdataset-part2) contains 3,997 pages, 103,256 lines and [CODH dataset](http://codh.rois.ac.jp/modern-magazine/dataset/) contains 1985 pages and 59,465 lines.
+[NDL dataset](https://github.com/ndl-lab/pdmocrdataset-part2) contains 3,997 pages, 103,256 lines and [CODH dataset](http://codh.rois.ac.jp/modern-magazine/dataset/) contains 1985 pages and 59,465 lines.     
+
+     
+<img src="./images/kindai_v2.png" height="200" />
 
 
 
 ## Installing Kindai OCR
 
-Python==3.7.11         
+```Python==3.7.11         
 torch==1.7.0     
 torchvision==0.8.1     
 opencv-python==3.4.2.17     
@@ -39,7 +43,8 @@ Polygon3
 pillow==4.3.0     
 pytorch-lightning==1.3.5     
 einops==0.3.0     
-editdistance==0.5.3     
+editdistance==0.5.3
+```  
 
 
 ## Running Kindai OCR
@@ -55,7 +60,7 @@ editdistance==0.5.3
 - using --cuda = True for GPU device and Fasle for CPU device    
 - using --canvas_size ot set image size for text line detection   
  - An example result from our OCR system
- <img src="https://github.com/ducanh841988/Kindai-OCR/blob/master/data/result/res_k188701_021_39.jpg" width="700">
+ <img src="./data/result1/res_k188701_021_39.jpg" width="500">
 
  ## Citation
  If you find Kindai OCR useful in your research, please consider citing:   
