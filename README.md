@@ -60,6 +60,7 @@ editdistance==0.5.3
 - using --cuda = True for GPU device and Fasle for CPU device    
 - using --canvas_size ot set image size for text line detection   
  - An example result from our OCR system
+
  <img src="./data/result1/res_k188701_021_39.jpg" width="500">
 
  ## Citation
