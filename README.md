@@ -48,8 +48,21 @@ editdistance==0.5.3
 
 
 ## Running Kindai OCR
-- You should first download the pre_trained models and put them into ./pretrain/ folder.
-[VGG model](https://drive.google.com/file/d/1_A1dEFKxyiz4Eu1HOCDbjt1OPoEh90qr/view?usp=sharing), [CRAFT model](https://drive.google.com/file/d/1-9xt_jjs4btMrz5wzrU1-kyp2c6etFab/view?usp=sharing), [OCR V1.0 model](https://drive.google.com/file/d/1mibg7D2D5rvPhhenLeXNilSLMBloiexl/view?usp=sharing), [OCR V2.0 model](https://drive.google.com/file/d/1cq4PwPS2mXXRjOApst2i7n4G3mBSVqpI/view?usp=drive_link)
+### Pre-trained Models
+
+Before running the project, please download the pre-trained models from the shared Google Drive folder and place all model files in the `./pretrain/` directory.
+
+**Google Drive:**
+https://drive.google.com/drive/folders/15yOzVijhHgmj9AQ0X8yK5RVSqQZlPTYf?usp=drive_link
+
+The folder contains the following pre-trained models:
+
+| File | Description |
+|------|-------------|
+| `synweights_4600.pth` | Text line detection model |
+| `WAP_params.pkl` | Kindai line recognition model (Version 1, attention-based) |
+| `transformer.ckpt` | Kindai line recognition model (Version 2, Transformer-based) |
+
 - Copy your images into ./data/test/ folder   
 - run the following script to recognize images:   
 `python test_kindai_1.0.py`   
